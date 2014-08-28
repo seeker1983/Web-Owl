@@ -7,42 +7,31 @@ import scala.scalajs.js
 import js.Dynamic.global
 import js.Dynamic.literal
 
-class Assets
+import scala.language.postfixOps
+import createjs._
+import common._
+
+class Resource extends js.Object
+
+case class Assets(items:Map[String, String], complete: Callback)
 {
-//	val items:List[String]
+	val queue = new LoadQueue(false, "./target/scala-2.11/classes/")
+	queue.installPlugin(Sound)
+	queue.on("complete", complete );
+	queue.on("error", (e:js.Dynamic) => error(e) );
 
-/*
- 	var stage = new CreateJS.Stage("TestCanvas")
+	queue.loadManifest(items map {
+		case(k,v) => literal(id = k, src = v)
+		} toArray : Array[js.Dynamic])
 
- 	val assets = Preload.loadData()
-
-	def main ():Unit  =
+	def error(e:js.Dynamic = null):Unit =
 	{
-		CreateJS.Ticker.addEventListener("tick", stage)
-		CreateJS.Ticker.addEventListener("click", () => onClick())
-
-		val queue = new CreateJS.LoadQueue(false, "./target/scala-2.11/classes/")
-		queue.installPlugin(CreateJS.Sound)
-
-		queue.on("complete", () => onLoadComplete() );
-
-		queue.loadManifest(List(
-			literal(id = "pop", src = "sound/pop.mp3"),
-			literal(id = "world", src = "img/world.png")
-			).toArray[js.Dynamic]);
-
+		throw new BasicException("Assets: Error loading file " + e.item.src)
 	}
-
-	def onClick():Unit =
+	def get(id:String):Resource =
 	{
-		println("Clicked!")
+		null
 	}
-
-	def onLoadComplete():Unit =
-	{
-		println("Complete!")
-		CreateJS.Sound.play("pop")
-	}
-*/
 }
+
 

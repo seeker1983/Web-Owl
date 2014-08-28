@@ -1,8 +1,21 @@
-package createjs
 import scala.scalajs.js
 
-package object createjs extends js.GlobalScope {
+import js.annotation.JSName
 
-  val CreateJS: CreateJS = ???
+import common._
 
+package object createjs
+{
+	type EventHandler = js.Function
+
+	trait EventListener extends js.Object
+
+	@JSName("createjs.Ticker")
+	object Ticker extends js.Object
+	{
+		def addEventListener(eventName:String, handler:EventHandler):Unit = ???
+		def addEventListener(eventName:String, callback:Callback):Unit = ???
+		def addEventListener(eventName:String, stage:Stage):Unit = ???
+	}
 }
+

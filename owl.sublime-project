@@ -3,7 +3,21 @@
 	[
 		{
 			"follow_symlinks": true,
+			"folder_exclude_patterns": [
+			".svn", ".git", ".hg", "CVS"
+//				,"project/project", "project/target"
+//				,"target/resolution-cache","target/scala-2.11/classes","target/streams",	"target"
+				],
+    		"file_exclude_patterns": [
+
+    		],
+			"binary_file_patterns":
+			[
+				"*.map"
+			],
+
 			"path": "."
 		}
 	]
 }
+

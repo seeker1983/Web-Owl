@@ -1,6 +1,7 @@
 package common
 
-object Types
+trait Types
 {
-	type Callback = Unit => Unit
+	type Callback = () => Unit
 }
+

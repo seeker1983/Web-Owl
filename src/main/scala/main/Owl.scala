@@ -1,7 +1,7 @@
 package main
 
 import assets.Assets
-import createjs.CreateJS
+import createjs._
 
 import org.scalajs.dom.extensions._
 import org.scalajs.dom
@@ -10,29 +10,24 @@ import scala.scalajs.js
 import js.Dynamic.global
 import js.Dynamic.literal
 
+import common._
+
 class Owl
 {
- 	val stage = new CreateJS.Stage("TestCanvas")
+ 	val stage = new Stage("TestCanvas")
 
-// 	val assets = new assets.
+ 	val assets = new Assets(Map(
+ 			"pop" -> "sound/pop.mp3",
+ 			"world" -> "img/world.png"
+ 		), onLoadComplete
+ 	)
 
 	init()
 
 	def init ():Unit  =
 	{
-		CreateJS.Ticker.addEventListener("tick", stage)
-		CreateJS.Ticker.addEventListener("click", () => onClick())
-
-		val queue = new CreateJS.LoadQueue(false, "./target/scala-2.11/classes/")
-		queue.installPlugin(CreateJS.Sound)
-
-		queue.on("complete", () => onLoadComplete() );
-
-		queue.loadManifest(List(
-			literal(id = "pop", src = "sound/pop.mp3"),
-			literal(id = "world", src = "img/world.png")
-			).toArray[js.Dynamic]);
-
+		Ticker.addEventListener("tick", stage)
+		Ticker.addEventListener("click", () => onClick() )
 	}
 
 	def onClick():Unit =
@@ -42,8 +37,9 @@ class Owl
 
 	def onLoadComplete():Unit =
 	{
+//		stage.addChild(new Bitmap(assets.get("world")))
 		println("Complete!")
-		CreateJS.Sound.play("pop")
+		Sound.play("pop")
 	}
 
 }

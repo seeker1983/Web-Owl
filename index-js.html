@@ -42,19 +42,24 @@ function init() {
     var queue = new createjs.LoadQueue(false,"target/scala-2.11/classes/",true);
     queue.installPlugin(createjs.Sound);
     queue.on("complete", handleComplete);
+    queue.on("error", error);
     queue.loadManifest([
     	{id:"pop", src:"sound/pop.mp3"},
-        {id:"world", src:"img/world.png"}
+        {id:"world", src:"img/world.png2"}
     	]);
     function handleComplete() {
         canvas = document.getElementById("TestCanvas")
         createjs.Sound.play("pop")
         var image = queue.getResult("world")
         var mapBitmap = new createjs.Bitmap(image)
-        var mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
+//        var mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
         mapBitmap.width = canvas.width
         mapBitmap.height = canvas.width
         stage.addChild(mapBitmap)
+    }
+
+    function error(e){
+        console.log("error: ", e)
     }
 
     stage.addEventListener("click", onClick);

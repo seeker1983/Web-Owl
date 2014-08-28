@@ -1,0 +1,11 @@
+In Default\Preferences.sublime-setting I have
+
+    "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS"],
+
+I want to write in User\Preferences.sublime-setting or project-name.sublime-settings something like
+
+"folder_exclude_patterns" += [".idea", ".sbt"]
+
+Which makes much more sense when copying and extending original array.
+
+Is it possible in some way?
