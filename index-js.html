@@ -9,61 +9,61 @@
 </head>
 <body onload="init()">
 
-<canvas id="TestCanvas"></canvas>
+<canvas id="TestCanvas" width="1000" height="700"></canvas>
 
 <script type="text/javascript">
 
 function init() {
 
-var stage = new createjs.Stage("TestCanvas");
-createjs.Ticker.addEventListener("tick", stage);
+    var stage = new createjs.Stage("TestCanvas");
+    createjs.Ticker.addEventListener("tick", stage);
 
-var mc = new createjs.MovieClip(null, 0, true, {start:20});
-stage.addChild(mc);
+ /*   var mc = new createjs.MovieClip(null, 0, true, {start:20});
+    stage.addChild(mc);
 
-var child1 = new createjs.Shape(
- new createjs.Graphics().beginFill("#999999")
-     .drawCircle(30,30,30));
-var child2 = new createjs.Shape(
- new createjs.Graphics().beginFill("#5a9cfb")
-     .drawCircle(30,30,30));
+    var child1 = new createjs.Shape(
+     new createjs.Graphics().beginFill("#999999")
+         .drawCircle(30,30,30));
+    var child2 = new createjs.Shape(
+     new createjs.Graphics().beginFill("#5a9cfb")
+         .drawCircle(30,30,30));
 
-mc.timeline.addTween(
- createjs.Tween.get(child1)
-     .to({x:0}).to({x:60}, 50).to({x:0}, 50));
-mc.timeline.addTween(
- createjs.Tween.get(child2)
-     .to({x:60}).to({x:0}, 50).to({x:60}, 50));
+    mc.timeline.addTween(
+     createjs.Tween.get(child1)
+         .to({x:0}).to({x:60}, 50).to({x:0}, 50));
+    mc.timeline.addTween(
+     createjs.Tween.get(child2)
+         .to({x:60}).to({x:0}, 50).to({x:60}, 50));
 
-mc.gotoAndPlay("start");
+    mc.gotoAndPlay("start");*/
 
 
 
-//createjs.Sound.registerSound("./target/scala-2.11/classes/sound/coin.wav", "coin")
-//createjs.Sound.registerSound("./target/scala-2.11/classes/sound/pop.mp3", "pop")
-//createjs.Sound.addEventListener("fileload", onComplete);
-//createjs.Sound.registerSound("./target/scala-2.11/classes/sound/toggle.ogg", "toggle")
+    var queue = new createjs.LoadQueue(false,"target/scala-2.11/classes/",true);
+    queue.installPlugin(createjs.Sound);
+    queue.on("complete", handleComplete);
+    queue.loadManifest([
+    	{id:"pop", src:"sound/pop.mp3"},
+        {id:"world", src:"img/world.png"}
+    	]);
+    function handleComplete() {
+        canvas = document.getElementById("TestCanvas")
+        createjs.Sound.play("pop")
+        var image = queue.getResult("world")
+        var mapBitmap = new createjs.Bitmap(image)
+        var mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
+        mapBitmap.width = canvas.width
+        mapBitmap.height = canvas.width
+        stage.addChild(mapBitmap)
+    }
 
-var queue = new createjs.LoadQueue(false,"target/scala-2.11/classes/",true);
-queue.installPlugin(createjs.Sound);
-queue.on("complete", handleComplete);
-queue.loadManifest([
-	{id:"pop", src:"sound/pop.mp3"},
-    {id:"world", src:"img/world.png"}
-	]);
-function handleComplete() {
-    createjs.Sound.play("pop");
-    var image = queue.getResult("world");
-    document.body.appendChild(image);
-}
+    stage.addEventListener("click", onClick);
 
-createjs.Ticker.addEventListener("click", onClick);
-
-function onClick()
-{
-	console.log("click")
-	createjs.Sound.play("pop");
-}
+    function onClick()
+    {
+    	console.log("click")
+    	createjs.Sound.play("pop");
+    }
 
 }
  </script>

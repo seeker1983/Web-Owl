@@ -3,11 +3,11 @@ package createjs
 import scala.scalajs.js
 import js.annotation.JSName
 
-object CreateJS
+class CreateJS
 {
 	sealed trait EventListener extends js.Object
 
-	type EventHandler = () => Unit
+	type EventHandler = js.Function
 
 	class DisplayObject extends js.Object
 	{
@@ -61,7 +61,7 @@ object CreateJS
 	object Ticker extends js.Object
 	{
 		def addEventListener(eventName:String, handler:EventHandler):Unit = ???
-		def addEventListener(eventName:String, target:EventListener):Unit = ???
+		def addEventListener(eventName:String, stage:Stage):Unit = ???
 	}
 
 	class Tween extends js.Object
@@ -77,11 +77,13 @@ object CreateJS
 /*   Load queue */
 	class Plugin extends js.Object
 
-	@JSName("createjs.Sound")
-	var Sound:Plugin = _
+/*	@JSName("createjs.Sound")
+	object Sound extends Plugin {
+		def play(soundId:String):Unit = ???
+	}*/
 
 	@JSName("createjs.LoadQueue")
-	class LoadQueue(useXHR:Boolean = true, basePath:String="", crossOrigin:String="")
+	class LoadQueue(useXHR:Boolean = true, basePath:String="", crossOrigin:String="") extends js.Object
 	{
 		def installPlugin(plugin:Plugin):Unit = ???
 
@@ -91,7 +93,7 @@ object CreateJS
 
 		def loadFile(params:js.Dynamic):Unit = ???
 
-		def loadManifest(params:js.Dynamic):Unit = ???
+		def loadManifest(paramList:js.Array[js.Dynamic]):Unit = ???
 	}
 
 
