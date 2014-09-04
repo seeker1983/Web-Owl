@@ -15,9 +15,6 @@
 
 function init() {
 
-    var stage = new createjs.Stage("TestCanvas");
-    createjs.Ticker.addEventListener("tick", stage);
-
  /*   var mc = new createjs.MovieClip(null, 0, true, {start:20});
     stage.addChild(mc);
 
@@ -36,8 +33,23 @@ function init() {
          .to({x:60}).to({x:0}, 50).to({x:60}, 50));
 
     mc.gotoAndPlay("start");*/
-
-
+        stage = new createjs.Stage("TestCanvas");
+        mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
+        canvas = document.getElementById("TestCanvas")
+        mapBitmap.width = canvas.width
+        mapBitmap.height = canvas.width
+        stage.addChild(mapBitmap)
+    stage.addChild(new createjs.Shape(new createjs.Graphics()
+        .beginFill("#ffffff").drawCircle(100,100,20)
+             .beginFill("#aaaaaa").drawCircle(100,100,19)
+             .beginFill("#666666").drawCircle(100,100,18)
+             .beginFill("#000000").drawCircle(100,100,16)
+             .beginFill("#666666").drawCircle(100,100,15)
+             .beginFill("#aaaaaa").drawCircle(100,100,14)
+             .beginFill("#ffffff").drawCircle(100,100,13)
+             ))
+    createjs.Ticker.addEventListener("tick", stage);
+/*
 
     var queue = new createjs.LoadQueue(false,"target/scala-2.11/classes/",true);
     queue.installPlugin(createjs.Sound);
@@ -45,32 +57,49 @@ function init() {
     queue.on("error", error);
     queue.loadManifest([
     	{id:"pop", src:"sound/pop.mp3"},
-        {id:"world", src:"img/world.png2"}
+        {id:"world", src:"img/world.png"}
     	]);
     function handleComplete() {
         canvas = document.getElementById("TestCanvas")
         createjs.Sound.play("pop")
+
+        var stage = new createjs.Stage("TestCanvas");
+        createjs.Ticker.addEventListener("tick", stage);
+        stage.addEventListener("click", onClick);
+
         var image = queue.getResult("world")
         var mapBitmap = new createjs.Bitmap(image)
 //        var mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
         mapBitmap.width = canvas.width
         mapBitmap.height = canvas.width
-        stage.addChild(mapBitmap)
+//        stage.addChild(mapBitmap)
+        console.log(mapBitmap)
+        console.log(stage)
     }
 
     function error(e){
         console.log("error: ", e)
     }
 
-    stage.addEventListener("click", onClick);
-
     function onClick()
     {
     	console.log("click")
     	createjs.Sound.play("pop");
     }
-
+*/
 }
+
+/*
+var stage=new createjs.Stage("TestCanvas2"); var circle = new createjs.Shape();
+circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+circle.x = 100;
+circle.y = 100;
+stage.addChild(circle);stage.addChild(_bmp);stage.update()
+
+
+(new createjs.Stage("TestCanvas2")).addChild(new createjs.Bitmap("target/scala-2.11/classes/img/world.png")).update()
+*/
+
  </script>
 
 </body>

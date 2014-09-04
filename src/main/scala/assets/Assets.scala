@@ -11,12 +11,12 @@ import scala.language.postfixOps
 import createjs._
 import common._
 
-class Resource extends js.Object
-
 case class Assets(items:Map[String, String], complete: Callback)
 {
 	val queue = new LoadQueue(false, "./target/scala-2.11/classes/")
+
 	queue.installPlugin(Sound)
+
 	queue.on("complete", complete );
 	queue.on("error", (e:js.Dynamic) => error(e) );
 
@@ -26,11 +26,12 @@ case class Assets(items:Map[String, String], complete: Callback)
 
 	def error(e:js.Dynamic = null):Unit =
 	{
-		throw new BasicException("Assets: Error loading file " + e.item.src)
+		throw new Error("Assets: Error loading file " + e.item.src)
 	}
+
 	def get(id:String):Resource =
 	{
-		null
+		queue.getResult(id)
 	}
 }
 

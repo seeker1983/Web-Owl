@@ -8,14 +8,18 @@ package object createjs
 {
 	type EventHandler = js.Function
 
-	trait EventListener extends js.Object
+	@JSName("createjs")
+	object CreateJS
 
-	@JSName("createjs.Ticker")
-	object Ticker extends js.Object
+	class EventDispatcher extends js.Object
 	{
 		def addEventListener(eventName:String, handler:EventHandler):Unit = ???
-		def addEventListener(eventName:String, callback:Callback):Unit = ???
-		def addEventListener(eventName:String, stage:Stage):Unit = ???
+		def addEventListener(eventName:String, stage:Container):Unit = ???
+		def on(event:js.String, handler:EventHandler):Unit = ???
 	}
+
+
+	@JSName("createjs.Ticker")
+	object Ticker extends EventDispatcher
 }
 
