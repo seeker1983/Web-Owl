@@ -1,8 +1,8 @@
 package main
 
-import scala.scalajs.js.JSApp
+import game.owl.controller.Owl
 
-import game.owl.Owl
+import scala.scalajs.js.JSApp
 
 object Main extends JSApp
 {
