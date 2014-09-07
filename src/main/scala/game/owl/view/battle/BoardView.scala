@@ -12,6 +12,6 @@ class BoardView() extends BattleBg
       println(i,j)
     }
   }
-  addChild(new BoardView())
+  //addChild()
 }
 
