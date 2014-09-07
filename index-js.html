@@ -14,6 +14,36 @@
 <script type="text/javascript">
 
 function init() {
+        stage = new createjs.Stage("TestCanvas");
+        shape = new createjs.Shape()
+        stage.addChild(shape)
+        createjs.Ticker.addEventListener("tick", stage);
+
+        var text = new createjs.Text("Hello World, tra-ta-ta", "24px Arial", "#ff7700")
+        var h = text.getBounds().height
+        var w = text.getBounds().width
+//        text.x = text.y = 15
+        var bw = 4
+/*        shape.graphics.beginFill("gray").drawRoundRectComplex(0,0,w,h,10,10,10,10)
+        shape.graphics.beginFill("white").drawRoundRectComplex(bw,bw,w-2*bw,h-2*bw,10,10,10,10)
+        shape.graphics.beginFill("gray").moveTo(w/4,h-bw).lineTo(w/4,h*4/3).lineTo(w/2,h).closePath()
+        shape.graphics.beginFill("white").moveTo(w/4+bw,h-bw-1).lineTo(w/4+bw,h*4/3-bw).lineTo(w/2-bw,h-bw-1).closePath()*/
+
+        stage.addChild(text)
+
+        var h = text.getBounds().height + 40
+        var w = text.getBounds().width + 40
+        var xc = 0
+        var yc = 0
+        var bw = 4
+        shape.graphics.beginFill("gray").drawEllipse(xc,yc,w,h).
+        beginFill("white").drawEllipse(xc+bw,yc+bw,w-2*bw,h-2*bw)
+
+        shape.graphics.beginFill("gray").drawEllipse(xc+w/6,yc+h,30,20).
+            beginFill("white").drawEllipse(xc+w/6+2,yc+h+2,24,16)
+
+
+
 
  /*   var mc = new createjs.MovieClip(null, 0, true, {start:20});
     stage.addChild(mc);
@@ -33,8 +63,7 @@ function init() {
          .to({x:60}).to({x:0}, 50).to({x:60}, 50));
 
     mc.gotoAndPlay("start");*/
-        stage = new createjs.Stage("TestCanvas");
-        mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
+/*        mapBitmap = new createjs.Bitmap("target/scala-2.11/classes/img/world.png")
         canvas = document.getElementById("TestCanvas")
         mapBitmap.width = canvas.width
         mapBitmap.height = canvas.width
@@ -47,8 +76,11 @@ function init() {
              .beginFill("#666666").drawCircle(100,100,15)
              .beginFill("#aaaaaa").drawCircle(100,100,14)
              .beginFill("#ffffff").drawCircle(100,100,13)
-             ))
-    createjs.Ticker.addEventListener("tick", stage);
+             ))*/
+
+
+//     createjs.Tween.get(player).to({x:60}, 1000).to({x:600}, 1000);
+    //mc.gotoAndPlay("start")
 /*
 
     var queue = new createjs.LoadQueue(false,"target/scala-2.11/classes/",true);

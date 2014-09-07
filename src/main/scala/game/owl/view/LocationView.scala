@@ -1,6 +1,6 @@
 package game.owl.view
 
-import game.owl.model.location._
+import game.owl.model._
 
 import scala.scalajs.js
 import scala.scalajs.js.createjs._
@@ -9,17 +9,20 @@ import js.Dynamic.global
 import js.Dynamic.literal
 
 
-class LocationPicture(val data:Location)
+class LocationView(val location:Location) extends View
 {
-	val container = new Container()
 	val shape = new Shape(
 		     new Graphics().beginFill("#ffffff").drawCircle(0,0,18)
 		     .beginFill("#777777").drawCircle(0,0,16)
 		     .beginFill("#ffffff").drawCircle(0,0,14)
 	);
-	shape.x = data.pos.x
-	shape.y = data.pos.y
-	container.addChild(shape)
+	shape.x = location.pos.x
+	shape.y = location.pos.y
+	addChild(shape)
 
+	addEventListener("click", () =>
+	{
+		Player.travelTo(location)
+	})
 }
 

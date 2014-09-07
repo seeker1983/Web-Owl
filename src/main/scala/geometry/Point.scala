@@ -12,4 +12,7 @@ case class Point(x:Double, y:Double)
   def +(p: Point): Point = {
     Point(x + p.x, y + p.y)
   }
+
+  def distanceTo(that:Point):Double =
+    Math.sqrt((that.x - x)*(that.x - x) + (that.y - y)*(that.y - y))
 }
