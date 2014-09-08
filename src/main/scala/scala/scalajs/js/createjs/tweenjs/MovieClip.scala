@@ -21,3 +21,8 @@ object MovieClip
 	var SYNCHED:js.String = _
 }
 
+class TimeLine extends js.Object
+{
+	def addTween(tween:Tween):Unit = ???
+}
+

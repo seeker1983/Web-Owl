@@ -17,37 +17,33 @@ import js.Dynamic.global
 
 class WorldView(worldState:WorldState) extends ScrollView
 {
-	val mapView = new MapView()
-	addChild(mapView)
+	ShowMap()
 
-	val routeView = new RouteView(worldState.mapState)
-	addChild(routeView)
+	def ShowMap() = {
+		removeChildren()
+		val mapView = new MapView()
+		addChild(mapView)
 
-	Player.setState(worldState.playerState)
-	addChild(Player)
+		Player.setState(worldState.playerState)
+		addChild(Player)
 
-	initScroll(stage.canvasSize - mapView.size)
-
-	val comicView = new View()
-	addChild(comicView)
+		initScroll(stage.canvasSize - mapView.size)
+	}
 
 	//ShowComic(Comic1)
 
-	def ShowComic(comicData:ComicData)
+	def ShowComic(comicData:ComicData, callback:() => Unit = {() => })
 	{
-		comicView.removeChildren()
-		comicView.addChild(new ComicView(comicData))
+		removeChildren()
+		addChild(new ComicView(comicData, callback))
 	}
 
-	val battleView = new View()
-	addChild(battleView)
+	//ShowBattle(Battle1)
 
-	ShowBattle(Battle1)
-
-	def ShowBattle(battleData:BattleData)
+	def ShowBattle(battleData:BattleData, callback:() => Unit = {() => })
 	{
-		battleView.removeChildren()
-		battleView.addChild(new BattleView(battleData))
+		removeChildren()
+		addChild(new BattleView(battleData, callback))
 	}
 }
 

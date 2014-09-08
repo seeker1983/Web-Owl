@@ -7,12 +7,13 @@ import scala.scalajs.js
 import scala.scalajs.js.createjs._
 
 
-class BattleView(data:BattleData) extends BattleBg
+class BattleView(data:BattleData, callback:() => Unit = {() => }) extends BattleBg
 {
 	click(() => {
 		removeChildren()
+		callback()
 	})
 
-  addChild(new BoardView())
+    addChild(new BoardView())
 }
 

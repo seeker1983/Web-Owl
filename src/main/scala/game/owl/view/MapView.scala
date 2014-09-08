@@ -1,7 +1,7 @@
 package game.owl.view
 
 import game.owl.controller.Owl
-import game.owl.model.Assets
+import game.owl.model._
 
 import geometry.Point
 
@@ -16,5 +16,10 @@ class MapView() extends View
 	addChild(bmp)
 
 	val size = Point(bmp.getBounds().width, bmp.getBounds().height)
+
+	Locations.all.map(
+	location => if(location.isVisible())
+		addChild(new LocationView(location))
+	)
 }
 

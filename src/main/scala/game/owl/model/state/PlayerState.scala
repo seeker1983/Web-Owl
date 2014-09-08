@@ -1,13 +1,20 @@
 package game.owl.model.state
 
 import game.owl.model._
+import game.owl.view.Player
 
-class PlayerState(val location:Location)
+class PlayerState(var location:Location, var tags:Set[String] = Set())
 {
 	def save() =
 	{
 		storage.LocalStorage.set("PlayerLocation", location.id)
 	}
+
+	def addTag(tag:String):Unit = tags = tags + tag
+	def hasTag(tag:String):Boolean = tags(tag)
+
+	def setLocation(newLocation:Location):Unit = location = newLocation
+
 }
 
 object PlayerState
@@ -16,7 +23,7 @@ object PlayerState
 	{
 		val loc_id = storage.LocalStorage.get("PlayerLocation")
 		if(loc_id != null)
-			new PlayerState(Location.getById("" + loc_id))
+			new PlayerState(Locations.getById("" + loc_id))
 		else
 			DefaultPlayerState
 	}
@@ -24,4 +31,4 @@ object PlayerState
 
 
 
-object DefaultPlayerState extends PlayerState(Location1)
+object DefaultPlayerState extends PlayerState(Locations.Location1)

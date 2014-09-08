@@ -13,10 +13,12 @@ import storage.LocalStorage
 
 object Owl
 {
+	lazy val world = new WorldView(WorldState.load())
+
 	def init():Unit = Assets.preload(AssetsLoaded)
 
 	def AssetsLoaded():Unit =
 	{
-		stage.addChild(new WorldView(WorldState.load()))
+		stage.addChild(world)
 	}
 }

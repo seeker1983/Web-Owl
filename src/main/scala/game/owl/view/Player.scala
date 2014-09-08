@@ -2,13 +2,15 @@ package game.owl.view
 
 import game.owl.model._
 import game.owl.model.state._
-import location._
+import game.owl.controller._
 
 import scala.scalajs.js
 import scala.scalajs.js.createjs._
 
 import js.Dynamic.global
 import js.Dynamic.literal
+
+
 
 object Player extends View
 {
@@ -32,10 +34,11 @@ object Player extends View
 	{
     val animationTime = location.pos.distanceTo(state.location.pos)
 
-    state = new PlayerState(location)
-    state.save()
-
     Tween.get(shape).to(literal(x = location.pos.x, y = location.pos.y), animationTime * MOVEANIMATIONSPEED)
+    .call(() => {
+        state.setLocation(location)
+        LocationController.arrive(location)
+    })
 	}
 }
 

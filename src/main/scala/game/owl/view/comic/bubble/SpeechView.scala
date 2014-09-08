@@ -5,8 +5,10 @@ import game.owl.view.View
 import scala.scalajs.js
 import scala.scalajs.js.createjs._
 
+import geometry.Point
 
-class Speech(dialog:String, x:Double, y:Double) extends View(x,y)
+
+case class SpeechView(dialog:String, pos:Point) extends View(pos.x, pos.y)
 {
 	val shape = new Shape()
     addChild(shape)

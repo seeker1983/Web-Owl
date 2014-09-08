@@ -3,6 +3,8 @@ scalaJSSettings
 
 scalacOptions += "-feature"
 
+scalacOptions += "-deprecation"
+
 name := "Owl"
 
 version := "0.1-SNAPSHOT"
