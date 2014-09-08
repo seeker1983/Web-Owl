@@ -3,7 +3,7 @@ package game.owl.model.state
 import game.owl.model._
 import game.owl.view.Player
 
-class PlayerState(var location:Location, var tags:Set[String] = Set())
+class PlayerState(var location:LocationData, var tags:Set[String] = Set())
 {
 	def save() =
 	{
@@ -13,7 +13,7 @@ class PlayerState(var location:Location, var tags:Set[String] = Set())
 	def addTag(tag:String):Unit = tags = tags + tag
 	def hasTag(tag:String):Boolean = tags(tag)
 
-	def setLocation(newLocation:Location):Unit = location = newLocation
+	def setLocation(newLocation:LocationData):Unit = location = newLocation
 
 }
 
@@ -31,4 +31,4 @@ object PlayerState
 
 
 
-object DefaultPlayerState extends PlayerState(Locations.Location1)
+object DefaultPlayerState extends PlayerState(Locations.HomeLocation)

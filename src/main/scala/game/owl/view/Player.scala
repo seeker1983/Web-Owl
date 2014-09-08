@@ -30,7 +30,7 @@ object Player extends View
     shape.y=state.location.pos.y
   }
 
-	def travelTo(location:Location) =
+	def travelTo(location:LocationData) =
 	{
     val animationTime = location.pos.distanceTo(state.location.pos)
 

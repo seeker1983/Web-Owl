@@ -17,15 +17,15 @@ import game.owl.model.battle._
 
 package object LocationController
 {
-	def arrive(location:Location) {
+	def arrive(location:LocationData) {
 		location match {
-	        case Locations.Location2 => {
+	        case Locations.MountainLocation => {
         		Player.state.addTag("location 3")
 	        	Owl.world.ShowComic(Comic1, () => {
 	        		Owl.world.ShowMap()
 	        		})
 	        }
-	        case Locations.Location3 => {
+	        case Locations.LairLocation => {
 	        	Owl.world.ShowComic(Comic2, () => {
 		        	Owl.world.ShowBattle(Battle1, () => {
 		        		Owl.world.ShowMap()

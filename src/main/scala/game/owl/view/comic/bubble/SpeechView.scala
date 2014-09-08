@@ -8,7 +8,7 @@ import scala.scalajs.js.createjs._
 import geometry.Point
 
 
-case class SpeechView(dialog:String, pos:Point) extends View(pos.x, pos.y)
+case class SpeechView(dialog:String, position:Point) extends View(position.x, position.y)
 {
 	val shape = new Shape()
     addChild(shape)

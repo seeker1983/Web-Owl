@@ -44,7 +44,7 @@ class Graphics extends js.Object {
   //	def beginBitmapFill(image, repetition, matrix):Graphics = ???
   def endFill(): Graphics = ???
 
-  //	def setStrokeStyle(thickness, caps, joints, miterLimit, ignoreScale):Graphics = ???
+  def setStrokeStyle(thickness:js.Number, caps:js.Number = 0, joints:js.Number = 0, miterLimit:js.Number = 10, ignoreScale:js.Boolean = false):Graphics = ???
   def beginStroke(color: js.String): Graphics = ???
 
   def beginLinearGradientStroke(colors: js.Array[js.String], ratios: js.Number, x0: js.Number, y0: js.Number, x1: js.Number, y1: js.Number): Graphics = ???

@@ -8,7 +8,7 @@ import scala.scalajs.js.createjs._
 import geometry.Point
 
 
-case class ThoughtView(dialog:String, pos:Point) extends View(pos.x, pos.y)
+case class ThoughtView(dialog:String, position:Point) extends View(position.x, position.y)
 {
 	val shape = new Shape()
     addChild(shape)

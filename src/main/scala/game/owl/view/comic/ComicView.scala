@@ -6,6 +6,7 @@ import game.owl.model.comic._
 
 import scala.scalajs.js
 import scala.scalajs.js.createjs._
+import js.Dynamic.literal
 
 import geometry.Point
 
@@ -29,8 +30,8 @@ class ComicView(data:ComicData, callback:() => Unit = {() => }) extends ComicBg
 		if(slideId % 4 == 0)
 			slidesView.removeChildren()
 		data.dialogs(slideId)  match {
-			case ThoughtDialog(text) => addChild(ThoughtView(text, pos))
-			case SpeechDialog(text) => addChild(SpeechView(text, pos))
+			case ThoughtDialog(text) => fadeIn(ThoughtView(text, pos))
+			case SpeechDialog(text) => fadeIn(SpeechView(text, pos))
 			case _ => throw new Error("Unknown dialog")
 		}
 		slideId = slideId + 1
@@ -45,5 +46,12 @@ class ComicView(data:ComicData, callback:() => Unit = {() => }) extends ComicBg
 			callback()
 			}
 	})
+
+	def fadeIn(item:View)
+	{
+		addChild(item)
+		item.container.alpha = 0
+		Tween.get(item.container).to(literal(alpha = 1), 500)
+	}
 }
 

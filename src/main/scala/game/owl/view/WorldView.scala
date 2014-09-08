@@ -17,6 +17,8 @@ import js.Dynamic.global
 
 class WorldView(worldState:WorldState) extends ScrollView
 {
+//	ShowBattle(Battle1)
+//	ShowComic(Comic1)
 	ShowMap()
 
 	def ShowMap() = {
@@ -30,15 +32,11 @@ class WorldView(worldState:WorldState) extends ScrollView
 		initScroll(stage.canvasSize - mapView.size)
 	}
 
-	//ShowComic(Comic1)
-
 	def ShowComic(comicData:ComicData, callback:() => Unit = {() => })
 	{
 		removeChildren()
 		addChild(new ComicView(comicData, callback))
 	}
-
-	//ShowBattle(Battle1)
 
 	def ShowBattle(battleData:BattleData, callback:() => Unit = {() => })
 	{
